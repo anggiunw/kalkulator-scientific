@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Kalkulator Scientific Anggi Setyo Primono</title>
+  <style>
+    body {
+      background-color: #fefbd8; /* kuning muda */
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #003366; /* biru tua */
+      margin-bottom: 20px;
+    }
+
+    .calculator {
+      background-color: #fff;
+      border: 4px solid #003366;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #888;
+      padding: 20px;
+      width: 340px;
+    }
+
+    #display {
+      width: 100%;
+      height: 60px;
+      font-size: 24px;
+      text-align: right;
+      margin-bottom: 10px;
+      padding: 10px;
+      background-color: #eaf6ff;
+      border: 2px solid #003366;
+      color: #000;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    button {
+      padding: 15px;
+      font-size: 18px;
+      background-color: #ffeb3b; /* kuning */
+      border: none;
+      border-radius: 5px;
+      color: #003366;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background-color: #fdd835;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Kalkulator Scientific Anggi Setyo Primono</h1>
+
+  <div class="calculator">
+    <input type="text" id="display" disabled>
+    <div class="buttons">
+      <button onclick="append('7')">7</button>
+      <button onclick="append('8')">8</button>
+      <button onclick="append('9')">9</button>
+      <button onclick="append('/')">÷</button>
+      <button onclick="append('Math.sqrt(')">√</button>
+
+      <button onclick="append('4')">4</button>
+      <button onclick="append('5')">5</button>
+      <button onclick="append('6')">6</button>
+      <button onclick="append('*')">×</button>
+      <button onclick="append('Math.pow(')">xʸ</button>
+
+      <button onclick="append('1')">1</button>
+      <button onclick="append('2')">2</button>
+      <button onclick="append('3')">3</button>
+      <button onclick="append('-')">−</button>
+      <button onclick="append('Math.sin(')">sin</button>
+
+      <button onclick="append('0')">0</button>
+      <button onclick="append('.')">.</button>
+      <button onclick="calculate()">=</button>
+      <button onclick="append('+')">+</button>
+      <button onclick="append('Math.cos(')">cos</button>
+
+      <button onclick="append('Math.tan(')">tan</button>
+      <button onclick="append('Math.log10(')">log</button>
+      <button onclick="append('Math.PI')">π</button>
+      <button onclick="append('Math.E')">e</button>
+      <button onclick="clearDisplay()">C</button>
+    </div>
+  </div>
+
+  <script>
+    const display = document.getElementById('display');
+
+    function append(value) {
+      display.value += value;
+    }
+
+    function clearDisplay() {
+      display.value = '';
+    }
+
+    function calculate() {
+      try {
+        // Auto-close brackets if needed
+        let result = eval(display.value + ')'.repeat((display.value.match(/\(/g) || []).length - (display.value.match(/\)/g) || []).length));
+        display.value = result;
+      } catch (error) {
+        display.value = 'Error';
+      }
+    }
+  </script>
+
+</body>
+</html>
